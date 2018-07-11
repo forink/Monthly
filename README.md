@@ -1,10 +1,14 @@
 #Monthly-Advanced.js
-An advance calendar plugin based on Monthly.js
+
+An improved calendar plugin based on <a href="https://github.com/kthornbloom/Monthly/">Monthly</a>Monthly by Kevin Thornbloom.
+
+<a href="http://github-demo.forink.net/monthly-advanced" target="_blank">Live Demo</a>
 
 ##Changelog
 
 v 1.0.0 - Launched, add the json config to custom the textcolor of events, add custom options to change the weekend day background color.
 
+The Original Version:
 =============================================================
 #Monthly.js
 A jQuery based responsive calendar plugin 
