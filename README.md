@@ -1,6 +1,10 @@
 #Monthly-Advanced.js
 
+<<<<<<< HEAD
 An improved calendar plugin based on <a href="https://github.com/kthornbloom/Monthly/">Monthly</a> by Kevin Thornbloom.
+=======
+An improved calendar plugin based on <a href="https://github.com/kthornbloom/Monthly/">Monthly</a>Monthly by Kevin Thornbloom.
+>>>>>>> 0e44f6c430af3a3148b46929e4324c8003e95299
 
 <a href="http://github-demo.forink.net/monthly-advanced" target="_blank">Live Demo</a>
 
