@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta charset='utf-8'>
 <head>
-    <title>Monthly - Event Tests</title>
-	<link rel="stylesheet" href="css/monthly.css">
+    <title>Monthly Advanced - Event Tests</title>
+	<link rel="stylesheet" href="css/monthly-advanced.css">
 	<style type="text/css">
 		body {
 			font-family: Calibri;
@@ -21,12 +21,13 @@
 	</style>
 </head>
 <body>
-<h1>Monthly.js Event Tests</h1>
-<h2>October - December 2016</h2>
-<p>This contains events intended to test basic event span functionality of monthly.js</p>
+<h1>Monthly-Advanced.js Event Tests</h1>
+<h2>June - August 2018</h2>
+<p>This contains events intended to test basic event span functionality of monthly-advanced.js</p>
 <div class="monthly" id="mycalendar"></div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/monthly.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/monthly-advanced.js"></script>
 <script type="text/javascript">
 
 	var sampleEvents = {
@@ -34,97 +35,106 @@
 		{
 		"id": 1,
 		"name": "Whole month event",
-		"startdate": "2016-10-01",
-		"enddate": "2016-10-31",
+		"startdate": "2018-06-01",
+		"enddate": "2018-06-31",
 		"starttime": "12:00",
 		"endtime": "2:00",
+		"textcolor": "#FFFFFF",
 		"color": "#99CCCC",
 		"url": ""
 		},
 		{
 		"id": 2,
 		"name": "Test encompasses month",
-		"startdate": "2016-10-29",
-		"enddate": "2016-12-02",
+		"startdate": "2018-06-29",
+		"enddate": "2018-08-02",
 		"starttime": "12:00",
 		"endtime": "2:00",
+		"textcolor": "#FFFFFF",
 		"color": "#CC99CC",
 		"url": ""
 		},
 		{
 		"id": 3,
 		"name": "Test single day",
-		"startdate": "2016-11-04",
+		"startdate": "2018-07-04",
 		"enddate": "",
 		"starttime": "",
 		"endtime": "",
+		"textcolor": "#FFFFFF",
 		"color": "#666699",
 		"url": "https://www.google.com/"
 		},
 		{
 		"id": 8,
 		"name": "Test single day",
-		"startdate": "2016-11-05",
+		"startdate": "2018-07-05",
 		"enddate": "",
 		"starttime": "",
 		"endtime": "",
+		"textcolor": "#FFFFFF",
 		"color": "#666699",
 		"url": "https://www.google.com/"
 		},
 		{
 		"id": 4,
 		"name": "Test single day with time",
-		"startdate": "2016-11-07",
+		"startdate": "2018-07-07",
 		"enddate": "",
 		"starttime": "12:00",
 		"endtime": "02:00",
+		"textcolor": "#FFFFFF",
 		"color": "#996666",
 		"url": ""
 		},
 		{
 		"id": 5,
 		"name": "Test splits month",
-		"startdate": "2016-11-25",
-		"enddate": "2016-12-04",
+		"startdate": "2018-07-25",
+		"enddate": "2018-08-04",
 		"starttime": "",
 		"endtime": "",
-		"color": "#999999",
+		"textcolor": "#FF5722",
+		"color": "#FFEEEE",
 		"url": ""
 		},
 		{
 		"id": 6,
 		"name": "Test events on same day",
-		"startdate": "2016-11-25",
+		"startdate": "2018-07-25",
 		"enddate": "",
 		"starttime": "",
 		"endtime": "",
+		"textcolor": "#FFFFFF",
 		"color": "#99CC99",
 		"url": ""
 		},
 		{
 		"id": 7,
 		"name": "Test events on same day",
-		"startdate": "2016-11-25",
+		"startdate": "2018-07-25",
 		"enddate": "",
 		"starttime": "",
 		"endtime": "",
+		"textcolor": "#FFFFFF",
 		"color": "#669966",
 		"url": ""
 		},
 		{
 		"id": 9,
 		"name": "Test events on same day",
-		"startdate": "2016-11-25",
+		"startdate": "2018-07-25",
 		"enddate": "",
 		"starttime": "",
 		"endtime": "",
-		"color": "#999966",
+		"textcolor": "#FF5722",
+		"color": "#FFEEEE",
 		"url": ""
 		}
 	]
 	};
 
-	$(window).load( function() {
+	$(document).ready(function () {
 		$('#mycalendar').monthly({
 			mode: 'event',
 			dataType: 'json',

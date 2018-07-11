@@ -9,7 +9,7 @@
 <![endif]-->
 
 <!-- META ===================================================== -->
-    <title>Monthly - A jQuery Calendar Plugin</title>
+    <title>Monthly Advanced - An improved jQuery Calendar Plugin based on Monthly 2.2.1 by Kevin Thornbloom</title>
     <meta name="description" content="A method for responsive tables">
 
 <!-- Favicon  ========================================== -->
@@ -111,11 +111,11 @@
 			}
 		}
 	</style>
-	<link rel="stylesheet" href="css/monthly.css">
+	<link rel="stylesheet" href="css/monthly-advanced.css">
 </head>
 <body>
 <div class="page">
-		<h1>monthly.js</h1>
+		<h1>monthly-advanced.js</h1>
 		<h2>Example One - Event Calendar</h2>
 		<div style="width:100%; max-width:600px; display:inline-block;">
 			<div class="monthly" id="mycalendar"></div>
@@ -127,13 +127,14 @@
 			<div class="monthly" id="mycalendar2"></div>
 		</div>
 		<br>
-		<a href="https://github.com/kthornbloom/Monthly" class="button">DOWNLOAD / DOCS</a>
+		<a href="https://github.com/forink/Monthly-Advanced" class="button">DOWNLOAD / DOCS</a>
 </div>
 <!-- JS ======================================================= -->
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/monthly.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/monthly-advanced.js"></script>
 <script type="text/javascript">
-	$(window).load( function() {
+	$(document).ready(function () {
 
 		$('#mycalendar').monthly({
 			mode: 'event',

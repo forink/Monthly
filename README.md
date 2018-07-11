@@ -1,3 +1,11 @@
+#Monthly-Advanced.js
+An advance calendar plugin based on Monthly.js
+
+##Changelog
+
+v 1.0.0 - Launched, add the json config to custom the textcolor of events, add custom options to change the weekend day background color.
+
+=============================================================
 #Monthly.js
 A jQuery based responsive calendar plugin 
 
