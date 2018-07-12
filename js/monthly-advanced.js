@@ -219,6 +219,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                     eventTextColor = _getEventDetail(event, "textcolor"),
                     eventColor = _getEventDetail(event, "color"),
                     eventId = _getEventDetail(event, "id"),
+                    eventType = _getEventDetail(event, "eventtype"),
                     customClass = eventClass ? " " + eventClass : "",
                     dayStartTag = "<div",
                     dayEndTags = "</span></div>";
@@ -240,6 +241,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
 
                 var markupDayStart = dayStartTag
                         + attr("data-eventid", eventId)
+                        + attr("data-eventtype", eventType)
                         + attr("title", eventTitle)
                         // BG and FG colors must match for left box shadow to create seamless link between dates
                         + (eventColor ? attr("style", "background:" + eventColor + ";color:" + eventColor + ";") : ""),
@@ -276,6 +278,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                     if (remoteUrl) {
                         // Replace variables for month and year to load from dynamic sources
                         var url = String(remoteUrl).replace("{month}", month).replace("{year}", year);
+                        $.ajaxSetup({ async: false });
                         $.get(url, { now: $.now() }, function (data) {
                             addEventsFromString(data, month, year);
                         }, options.dataType).fail(function () {
