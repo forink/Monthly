@@ -6,6 +6,8 @@ An improved calendar plugin based on <a href="https://github.com/kthornbloom/Mon
 
 ##Changelog
 
+v 1.0.1 - Fixed the incorrect date in dt tag caused by using toISOString() lack with timezone, and fixed the incorrect color settings for the text and background of events.
+
 v 1.0.0 - Launched, add the json config to custom the textcolor of events, add custom options to change the weekend day background color.
 
 The Original Version:
