@@ -6,6 +6,8 @@ An improved calendar plugin based on <a href="https://github.com/kthornbloom/Mon
 
 ##Changelog
 
+v 1.0.3 - Adjust the style of today's mark, and add the "defaultTargetDate" for customize the initial month.
+
 v 1.0.2 - Fixed the unexpected issues on value check of jQuery caused by getting remote url asynchronous, and add the "eventType" for customization.
 
 v 1.0.1 - Fixed the incorrect date in dt tag caused by using toISOString() lack with timezone, and fixed the incorrect color settings for the text and background of events.

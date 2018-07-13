@@ -6,6 +6,8 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
     "use strict";
     $.fn.extend({
         monthly: function (customOptions) {
+            // Setting date string of today
+            var todayLocalStr = (new Date(Date.now() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10));
 
             // These are overridden by options declared in footer
             var defaults = {
@@ -23,18 +25,23 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 stylePast: false,
                 target: "",
                 useIsoDateFormat: false,
-                weekStart: 0,	// Sunday
+                weekStart: 0,  // Sunday
                 xmlUrl: "",
-                weekendColor: "#FFFFFF"
+                weekendColor: "#FFFFFF",
+                defaultTargetDate: todayLocalStr
             };
 
             var options = $.extend(defaults, customOptions),
                 uniqueId = $(this).attr("id"),
                 parent = "#" + uniqueId,
-                currentDate = new Date(),
+                currentDate = new Date(options.defaultTargetDate),
                 currentMonth = currentDate.getMonth() + 1,
                 currentYear = currentDate.getFullYear(),
                 currentDay = currentDate.getDate(),
+                nowDate = new Date(todayLocalStr),
+                nowYear = nowDate.getFullYear(),
+                nowMonth = nowDate.getMonth() + 1,
+                nowDay = nowDate.getDate(),
                 locale = (options.locale || defaultLocale()).toLowerCase(),
                 monthNameFormat = options.monthNameFormat || "short",
                 weekdayNameFormat = options.weekdayNameFormat || "short",
@@ -97,8 +104,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                     dayQty = daysInMonth(month, year),
                     // Get day of the week the first day is
                     mZeroed = month - 1,
-                    firstDay = new Date(year, mZeroed, 1, 0, 0, 0, 0).getDay(),
-                    settingCurrentMonth = month === currentMonth && year === currentYear;
+                    firstDay = new Date(year, mZeroed, 1, 0, 0, 0, 0).getDay();
 
                 // Remove old days
                 $(parent + " .monthly-day, " + parent + " .monthly-day-blank").remove();
@@ -137,12 +143,18 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                     }
                 }
 
-                if (settingCurrentMonth) {
-                    $(parent + ' *[data-number="' + currentDay + '"]').addClass("monthly-today");
-                }
+                // Check is setting to today's month
+                var monthOfToday = month === nowMonth && year === nowYear;
 
+                // Today cycle mark
+                if (monthOfToday) {
+                    $(parent + ' *[data-number="' + nowDay + '"]').addClass("monthly-today");
+                }
+                
                 // Reset button
-                $(parent + " .monthly-header-title").html('<a href="#" class="monthly-header-title-date" onclick="return false">' + monthNames[month - 1] + " " + year + "</a>" + (settingCurrentMonth && $(parent + " .monthly-event-list").hide() ? "" : '<a href="#" class="monthly-reset"></a>'));
+                var calendarNavInfo = '<a href="#" class="monthly-header-title-date" onclick="return false">' + monthNames[month - 1] + " " + year + "</a>",
+                calendarNavBtn = '<a href="#" class="monthly-reset"></a>';
+                $(parent + " .monthly-header-title").html(calendarNavInfo + (monthOfToday && $(parent + " .monthly-event-list").hide() ? "" : calendarNavBtn));
 
                 // Account for empty days at start
                 if (weekStartsOnMonday) {
@@ -441,10 +453,10 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 event.preventDefault();
             });
 
-            // Reset Month
+            // Reset to today
             $(document.body).on("click", parent + " .monthly-reset", function (event) {
                 $(this).remove();
-                setMonthly(currentMonth, currentYear);
+                setMonthly(nowMonth, nowYear);
                 viewToggleButton();
                 event.preventDefault();
                 event.stopPropagation();
