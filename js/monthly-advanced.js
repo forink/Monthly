@@ -28,7 +28,9 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 weekStart: 0,  // Sunday
                 xmlUrl: "",
                 weekendColor: "#FFFFFF",
-                defaultTargetDate: todayLocalStr
+                defaultTargetDate: todayLocalStr,
+                reloadAfterClickEvent: false,
+                callbackAfterPaging: function () { }
             };
 
             var options = $.extend(defaults, customOptions),
@@ -85,7 +87,10 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
             $(parent).addClass("monthly-locale-" + primaryLanguageCode + " monthly-locale-" + locale);
 
             // Add Header & event list markup
-            $(parent).prepend('<div class="monthly-header"><div class="monthly-header-title"><a href="#" class="monthly-header-title-date" onclick="return false"></a></div><a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
+            $(parent).prepend('<div class="monthly-header"><div class="monthly-header-title">'
+                + '<a href="#" class="monthly-header-title-date" onclick="return false"></a></div>'
+                + '<a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a>'
+                + '<a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
 
             // Set the calendar the first time
             setMonthly(currentMonth, currentYear);
@@ -150,7 +155,9 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 if (monthOfToday) {
                     $(parent + ' *[data-number="' + nowDay + '"]').addClass("monthly-today");
                 }
-                
+
+                $('.monthly-header-title').attr("data-period", year + '-' + month);
+
                 // Reset button
                 var calendarNavInfo = '<a href="#" class="monthly-header-title-date" onclick="return false">' + monthNames[month - 1] + " " + year + "</a>",
                 calendarNavBtn = '<a href="#" class="monthly-reset"></a>';
@@ -182,6 +189,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 // Events
                 if (options.mode === "event") {
                     addEvents(month, year);
+                    options.callbackAfterPaging.call(this);
                 }
                 var divs = $(parent + " .m-d");
                 for (index = 0; index < divs.length; index += 7) {
@@ -232,6 +240,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                     eventColor = _getEventDetail(event, "color"),
                     eventId = _getEventDetail(event, "id"),
                     eventType = _getEventDetail(event, "eventtype"),
+                    eventEnable = _getEventDetail(event, "eventenable"),
                     customClass = eventClass ? " " + eventClass : "",
                     dayStartTag = "<div",
                     dayEndTags = "</span></div>";
@@ -254,6 +263,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 var markupDayStart = dayStartTag
                         + attr("data-eventid", eventId)
                         + attr("data-eventtype", eventType)
+                        + attr("data-eventenable", eventEnable)
                         + attr("title", eventTitle)
                         // BG and FG colors must match for left box shadow to create seamless link between dates
                         + (eventColor ? attr("style", "background:" + eventColor + ";color:" + eventColor + ";") : ""),
@@ -505,6 +515,16 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                             $(parent).hide();
                         }
                     }
+                    event.preventDefault();
+                }
+            });
+
+            // Clicking an event within the calendar
+            $(document.body).on("click", parent + " .monthly-event-indicator", function (event) {
+                if (options.reloadAfterClickEvent && $(this).attr('data-eventenable') === 'true') {
+                    var pageYearMonth = $('.monthly-header-title').attr('data-period').split('-');
+                    setMonthly(parseInt(pageYearMonth[1]), parseInt(pageYearMonth[0]));
+                    viewToggleButton();
                     event.preventDefault();
                 }
             });

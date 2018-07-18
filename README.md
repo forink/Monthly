@@ -6,9 +6,11 @@ An improved calendar plugin based on <a href="https://github.com/kthornbloom/Mon
 
 ##Changelog
 
+v 1.0.4 - Add a json attribute "eventEnable " and a option "reloadAfterClickEvent" to enable or disable the action of click events on calendar, and add the callback function "callbackAfterPaging" to customize the action after click the previous or next month buttons.
+
 v 1.0.3 - Adjust the style of today's mark, and add the "defaultTargetDate" for customize the initial month.
 
-v 1.0.2 - Fixed the unexpected issues on value check of jQuery caused by getting remote url asynchronous, and add the "eventType" for customization.
+v 1.0.2 - Fixed the unexpected issues on value check of jQuery caused by getting remote url asynchronous, and add a json attribute "eventType" for customization.
 
 v 1.0.1 - Fixed the incorrect date in dt tag caused by using toISOString() lack with timezone, and fixed the incorrect color settings for the text and background of events.
 
