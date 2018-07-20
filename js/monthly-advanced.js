@@ -27,7 +27,8 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 useIsoDateFormat: false,
                 weekStart: 0,  // Sunday
                 xmlUrl: "",
-                weekendColor: "#FFFFFF",
+                holidays: "",
+                holidayColor: "#FFFFFF",
                 defaultTargetDate: todayLocalStr,
                 reloadAfterClickEvent: false,
                 callbackAfterPaging: function () { }
@@ -130,7 +131,8 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                                 + (isInPast ? " monthly-past-day" : "")
                                 + " dt" + ISODateStr
                                 )
-                            + ((dayOfWeek === 0 || dayOfWeek === 6) ? attr("style", "background:" + options.weekendColor + ";") : "")
+                            + ((dayOfWeek === 0 || dayOfWeek === 6 || (checkIsHoliday(year, month, dayNumber))) ? attr("style", "background:" + options.holidayColor + ";") : "")
+                            + ((dayOfWeek === 0 || dayOfWeek === 6 || (checkIsHoliday(year, month, dayNumber))) ? attr("data-holiday", "true") : attr("data-holiday", "false"))
                             + attr("data-number", dayNumber)
                             + attr("data-key", ISODateStr)
                             + ">" + innerMarkup + "</div>");
@@ -195,6 +197,15 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 for (index = 0; index < divs.length; index += 7) {
                     divs.slice(index, index + 7).wrapAll('<div class="monthly-week"></div>');
                 }
+            }
+
+            // Check is the day be holiday
+            function checkIsHoliday(checkYear, checkMonth, checkDay) {
+                var holidays = $.map(options.holidays.split(","), $.trim);
+                var monthDayStr = checkYear + '-'
+                    + ('0' + checkMonth.toString()).slice(-2) + '-'
+                    + ('0' + checkDay.toString()).slice(-2);
+                return (jQuery.inArray(monthDayStr, holidays) !== -1)
             }
 
             function addEvent(event, setMonth, setYear) {
