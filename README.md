@@ -6,6 +6,8 @@ An improved calendar plugin based on <a href="https://github.com/kthornbloom/Mon
 
 ##Changelog
 
+v 1.0.6 - Fix for the ESLint warnings.
+
 v 1.0.5 - Add an option "holidays" to customize the holidays style like weekend in calendar, and rename the option "weekendColor" to "holidayColor".
 
 v 1.0.4 - Add a json attribute "eventEnable " and an option "reloadAfterClickEvent" to enable or disable the action of click events on calendar, and add the callback function "callbackAfterPaging" to customize the action after click the previous or next month buttons.

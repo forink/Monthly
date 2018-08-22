@@ -1,6 +1,16 @@
-/*
-Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornbloom, licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
-*/
+/*!
+ * Monthly-Advanced 1.0
+ * Based on Monthly 2.2.1 by Kevin Thornbloom
+ *
+ * https://github.com/forink/Monthly-Advanced
+ *
+ * Depends on jquery 3.x
+ *
+ * Copyright (c) 2018 Yifong Jiang
+ * Released under the Creative Commons Attribution-ShareAlike 4.0 International License.
+ */
+
+/*eslint no-extra-parens: [2, "functions"]*/
 
 (function ($) {
     "use strict";
@@ -205,7 +215,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                 var monthDayStr = checkYear + '-'
                     + ('0' + checkMonth.toString()).slice(-2) + '-'
                     + ('0' + checkDay.toString()).slice(-2);
-                return (jQuery.inArray(monthDayStr, holidays) !== -1)
+                return (jQuery.inArray(monthDayStr, holidays) !== -1);
             }
 
             function addEvent(event, setMonth, setYear) {
@@ -282,7 +292,7 @@ Monthly-Advanced 1.0 by Yifong Jiang is based on Monthly 2.2.1 by Kevin Thornblo
                         + attr("href", eventURL)
                         + attr("class", "listed-event" + customClass)
                         + attr("data-eventid", eventId)
-                        + ((eventColorStyle + eventTextColorStyle) ? attr("style", eventColorStyle + eventTextColorStyle) : "")
+                        + (eventColorStyle + eventTextColorStyle) ? attr("style", eventColorStyle + eventTextColorStyle) : ""
                         + attr("title", eventTitle)
                         + ">" + eventTitle + " " + timeHtml + "</a>";
                 for (var index = startDayNumber; index <= endDayNumber; index++) {
