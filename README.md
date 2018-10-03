@@ -6,7 +6,9 @@ An improved calendar plugin based on <a href="https://github.com/kthornbloom/Mon
 
 ##Changelog
 
-v 1.0.6 - Fix for the ESLint warnings.
+v 1.0.7 - Fixed an issue where switching months would jump for a few months in some cases.
+
+v 1.0.6 - Fixed for the ESLint warnings.
 
 v 1.0.5 - Add an option "holidays" to customize the holidays style like weekend in calendar, and rename the option "weekendColor" to "holidayColor".
 

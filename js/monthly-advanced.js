@@ -101,7 +101,7 @@
             $(parent).prepend('<div class="monthly-header"><div class="monthly-header-title">'
                 + '<a href="#" class="monthly-header-title-date" onclick="return false"></a></div>'
                 + '<a href="#" class="monthly-prev"></a><a href="#" class="monthly-next"></a>'
-                + '<a href="#" class="monthly-next"></a></div>').append('<div class="monthly-event-list"></div>');
+                + '</div>').append('<div class="monthly-event-list"></div>');
 
             // Set the calendar the first time
             setMonthly(currentMonth, currentYear);
@@ -473,13 +473,13 @@
             }
 
             // Advance months
-            $(document.body).on("click", parent + " .monthly-next", function (event) {
+            $(parent + " .monthly-next").on('click', function (event) {
                 setNextMonth();
                 event.preventDefault();
             });
 
             // Go back in months
-            $(document.body).on("click", parent + " .monthly-prev", function (event) {
+            $(parent + " .monthly-prev").on('click', function (event) {
                 setPreviousMonth();
                 event.preventDefault();
             });
